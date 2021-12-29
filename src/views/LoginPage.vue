@@ -56,8 +56,8 @@ import useAuth from "@/composables/UseAuth";
 
 const error = ref('');
 const email = ref('michael@scolavisa.eu');
-// const password = ref('8Q4K)jKeN#P8IJ');
-const password = ref('ilovecats');
+const password = ref('8Q4K)jKeN#P8IJ');
+//const password = ref('ilovecats');
 const router = useRouter();
 const { authenticated, signIn } = useAuth();
 

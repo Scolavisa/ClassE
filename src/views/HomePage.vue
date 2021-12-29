@@ -1,20 +1,26 @@
 <template>
+    <div v-if="domainName!==''" class="mb-2 alert alert-primary">
+        {{ domainName }}
+    </div>
     <h1>Welkom {{ userName }}</h1>
     <p>
-        Welkom bij het Class Educators Dashboard.
+        Welkom bij het Class Educators Dashboard.<br/>
     </p>
+
+    <table class="table table-responsive">
+        <tr v-for="timeSlot in myDay">
+            <td>{{ timeSlot.from }}-{{ timeSlot.to }}</td>
+            <td>{{ timeSlot.student }}</td>
+            <td>{{ timeSlot.course }}</td>
+            <td>{{ timeSlot.location }}</td>
+        </tr>
+    </table>
 </template>
 
 <script setup>
-import { computed } from "vue";
 import useAuth from "../composables/UseAuth";
-const { user } = useAuth();
+import useCalendar from "../composables/UseCalendar";
+const { domainName, userName } = useAuth();
+const { myDay } = useCalendar();
 
-const userName = computed(() => {
-    const name =  user.value?.name;
-
-    return name
-        ? name[0].toUpperCase() + name.substring(1)
-        : '';
-})
 </script>

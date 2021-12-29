@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header class="mb-2">
         <!-- Fixed navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
@@ -22,8 +22,8 @@
                         <li v-if="authenticated" class="nav-item">
                             <span @click="logOut" class="nav-link">Logout</span>
                         </li>
-                        <li v-else>
-                            <router-link to="/login">Login</router-link>
+                        <li class="nav-item" v-else>
+                            <router-link class="nav-link" to="/login">Login</router-link>
                         </li>
                     </ul>
                 </div>
