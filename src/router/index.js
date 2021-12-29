@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import useAuth from "@/composables/UseAuth";
 import Home from "@/views/HomePage.vue";
 import Login from "@/views/LoginPage.vue";
+import CalendarMonth from "@/views/CalendarMonthPage.vue";
 
 const { authenticated } = useAuth();
 
@@ -10,6 +11,11 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home
+    },
+    {
+        path: '/calendarmonth',
+        name: 'calendarmonth',
+        component: CalendarMonth
     },
     {
         path: '/login',
@@ -33,16 +39,16 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
-})
+});
 
 /**
- * close nav bar after
+ * close offcanvas after
  */
 router.beforeEach((to, from, next) => {
-    const toggler = document.getElementById("navbar-toggler");
-    const isExpanded = toggler?.getAttribute('aria-expanded')==='true';
-    if (isExpanded) toggler.click();
+    const ocMenu = document.getElementById("mainMenu");
+    const isExpanded = ocMenu?.classList.contains('show');
+    if (isExpanded) document.getElementById("ocToggler").click();
     next();
-})
+});
 
 export default router;

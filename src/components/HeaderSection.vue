@@ -11,21 +11,34 @@
                     <div class="d-inline d-sm-none"><h1>XS</h1></div>
                 </div>
                 <a v-else class="navbar-brand" href="#">CLASS-ED</a>
-                <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="btn btn-primary" id="ocToggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainMenu" aria-controls="mainMenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <router-link to="/" class="nav-link">Home</router-link>
-                        </li>
-                        <li v-if="authenticated" class="nav-item">
-                            <span @click="logOut" class="nav-link">Logout</span>
-                        </li>
-                        <li class="nav-item" v-else>
-                            <router-link class="nav-link" to="/login">Login</router-link>
-                        </li>
-                    </ul>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="mainMenuLabel">Menu</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="d-grid gap-2">
+                            <router-link to="/" class="btn btn-primary">
+                                <font-awesome-icon icon="home" />
+                                Home
+                            </router-link>
+                            <router-link v-if="authenticated" to="/calendarmonth" class="btn btn-primary">
+                                <font-awesome-icon icon="calendar" />
+                                Calendar
+                            </router-link>
+                        </div>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="d-grid gap-2">
+                            <button v-if="authenticated" @click="logOut" class="btn btn-secondary" type="button">
+                                <font-awesome-icon icon="sign-out-alt" />
+                                Logout
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>

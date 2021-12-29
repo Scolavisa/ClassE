@@ -8,8 +8,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 // tree shaking icons as needed
 // see https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faBars, faAngleRight, faTimes, faHome, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-library.add([faBars, faAngleRight, faTimes, faHome, faInfoCircle]);
+import { faCalendar, faHome, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+library.add([ faCalendar, faHome, faSignOutAlt ]);
 // see https://github.com/Akryum/v-tooltip
 import VTooltipPlugin from 'v-tooltip';
 import 'v-tooltip/dist/v-tooltip.css';
