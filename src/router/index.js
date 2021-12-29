@@ -20,8 +20,14 @@ const router = createRouter({
     routes
 });
 
-router.beforeEach(() => {
-    document.getElementById('navbarCollapse').classList.remove('show');
+/**
+ * close nav bar after
+ */
+router.beforeEach((from, to, next) => {
+    const toggler = document.getElementById("navbar-toggler");
+    const isExpanded = toggler?.getAttribute('aria-expanded')==='true';
+    if (isExpanded) toggler.click();
+    next();
 })
 
 export default router;
