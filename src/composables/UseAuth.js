@@ -7,9 +7,9 @@ const authenticated = ref(false);
 export default function useAuth() {
 
     const signIn = async (email, password) => {
-        await axios.get('http://localhost:8000/sanctum/csrf-cookie');
+        await axios.get(import.meta.env.VITE_APP_CSRF_URL);
         await axios.post(
-            'http://localhost:8000/login',
+            import.meta.env.VITE_APP_LOGIN_URL,
             {email, password},
             {
                 withCredentials: true
@@ -20,7 +20,7 @@ export default function useAuth() {
 
     const signOut = async () => {
         await axios.post(
-            'http://localhost:8000/logout',
+            import.meta.env.VITE_APP_LOGOUT_URL,
             {},
             {
                 withCredentials: true
@@ -31,7 +31,7 @@ export default function useAuth() {
 
     const setUser = async () => {
         try {
-            const resp = await axios.get('http://localhost:8000/api/user', {
+            const resp = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/user`, {
                 withCredentials: true
             });
             authenticated.value = true;
