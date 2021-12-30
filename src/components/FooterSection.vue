@@ -2,7 +2,7 @@
     <footer class="footer mt-auto py-3 bg-light fixed-bottom">
         <div class="container">
             <div class="text-muted text-center">
-                <small>CLASS by <a href="https://www.scolavisa.eu">Scolavisa</a> &copy; {{ dateRange }}</small>
+                <small>CLASS by <a class="text-secondary" href="https://www.scolavisa.eu">Scolavisa</a> &copy; {{ dateRange }}</small>
             </div>
         </div>
     </footer>

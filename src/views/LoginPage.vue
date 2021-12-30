@@ -55,9 +55,13 @@ import { useRouter } from "vue-router";
 import useAuth from "@/composables/UseAuth";
 
 const error = ref('');
+// during dev
 const email = ref('michael@scolavisa.eu');
 const password = ref('8Q4K)jKeN#P8IJ');
-//const password = ref('ilovecats');
+// prod
+// const email = ref('');
+// const password = ref('');
+
 const router = useRouter();
 const { authenticated, signIn } = useAuth();
 

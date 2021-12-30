@@ -18,8 +18,6 @@ import useAuth from "./composables/UseAuth";
 const { setUser } = useAuth();
 await setUser();
 
-axios.defaults.withCredentials = true;
-
 createApp(App)
     .use(router)
     .use(VTooltipPlugin)

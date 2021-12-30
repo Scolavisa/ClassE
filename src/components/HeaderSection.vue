@@ -11,6 +11,8 @@
                     <div class="d-inline d-sm-none"><h1>XS</h1></div>
                 </div>
                 <a v-else class="navbar-brand" href="#">CLASS-ED</a>
+                <!-- no menu when not authenticated -->
+                <!-- the router will redirect to the login page anyway -->
                 <template v-if="authenticated">
                     <button
                         class="btn btn-primary"

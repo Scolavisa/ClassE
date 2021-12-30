@@ -10,7 +10,10 @@ export default function useAuth() {
         await axios.get(import.meta.env.VITE_APP_CSRF_URL);
         await axios.post(
             import.meta.env.VITE_APP_LOGIN_URL,
-            {email, password}
+            {email, password},
+            {
+                withCredentials: true
+            }
         );
         await setUser();
     };
@@ -28,7 +31,9 @@ export default function useAuth() {
 
     const setUser = async () => {
         try {
-            const resp = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/user`);
+            const resp = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/user`, {
+                withCredentials: true
+            });
             authenticated.value = true;
             user.value = resp.data;
         } catch (e) {
