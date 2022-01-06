@@ -10,12 +10,14 @@
                     <div class="d-none d-sm-inline d-md-none"><h1>SM</h1></div>
                     <div class="d-inline d-sm-none"><h1>XS</h1></div>
                 </div>
-                <a v-else class="navbar-brand" href="#">CLASS-ED</a>
+                <a v-else class="navbar-brand" href="#">
+                    <img src="/img/class-e.png" class="logo" alt="Classed logo">
+                </a>
                 <!-- no menu when not authenticated -->
                 <!-- the router will redirect to the login page anyway -->
                 <template v-if="authenticated">
                     <button
-                        class="btn btn-primary"
+                        class="btn btn-primary btn-straight-corners"
                         id="ocToggler"
                         type="button"
                         data-bs-toggle="offcanvas"
@@ -78,5 +80,10 @@ const logOut = async () => {
 </script>
 
 <style scoped>
-
+.logo {
+    height: 2.5rem;
+}
+.btn-straight-corners {
+    border-radius: 0;
+}
 </style>
