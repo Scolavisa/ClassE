@@ -36,11 +36,11 @@
                             <div class="d-grid gap-2">
                                 <router-link to="/" class="btn btn-primary">
                                     <font-awesome-icon icon="home"/>
-                                    Home
+                                    {{ $t('home')}}
                                 </router-link>
                                 <router-link v-if="authenticated" to="/calendarmonth" class="btn btn-primary">
                                     <font-awesome-icon icon="calendar"/>
-                                    Calendar
+                                    {{ $t('calendar')}}
                                 </router-link>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <div class="d-grid gap-2">
                                 <button v-if="authenticated" @click="logOut" class="btn btn-secondary" type="button">
                                     <font-awesome-icon icon="sign-out-alt"/>
-                                    Logout
+                                    {{ $t('logout')}}
                                 </button>
                             </div>
                         </div>

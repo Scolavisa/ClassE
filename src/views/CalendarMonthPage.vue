@@ -1,5 +1,5 @@
 <template>
-<h1>Calendar Month view</h1>
+<h1>{{$t('calendarmonthview')}}</h1>
 </template>
 
 <script setup>

@@ -2,11 +2,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-2">
             <div class="card card-default">
-                <div class="card-header">Login</div>
+                <div class="card-header">{{$t('login')}}</div>
                 <div class="card-body">
                     <form>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{$t('emailaddress')}}</label>
                             <div class="col-md-6">
                                 <input
                                     id="email"
@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{$t('password')}}</label>
                             <div class="col-md-6">
                                 <input
                                     id="password"
@@ -36,7 +36,7 @@
 
                         <div class="d-grid mt-4">
                             <button class="btn btn-primary" @click.prevent="handleSubmit">
-                                Login
+                                {{$t('login')}}
                             </button>
                         </div>
                     </form>

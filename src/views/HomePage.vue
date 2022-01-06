@@ -2,16 +2,16 @@
     <div v-if="domainName!==''" class="mb-2 alert alert-primary">
         {{ domainName }}
     </div>
-    <h1>Welkom {{ userName }}</h1>
     <p>
-        Welkom bij het Class Educators Dashboard.<br/>
+        {{ $t("hello")}} {{ userName }},
+        {{ $t("welcome") }}
     </p>
     <p>
-    <router-link to="/calendarmonth" class="btn btn-secondary">Bekijk je maandoverzicht</router-link>
+    <router-link to="/calendarmonth" class="btn btn-secondary">{{$t('yourmontlyoverview')}}</router-link>
     </p>
     <template v-if="filteredEvents.length > 0">
         <div class="calendar-section">
-            <h3>Je agenda voor vandaag:</h3>
+            <h3>{{$t('yourcalendarfortoday')}}:</h3>
             <table class="table table-responsive">
                 <tr v-for="timeSlot in filteredEvents" :class="timeSlot.classname">
                     <td>{{ timeSlot.from }}-{{ timeSlot.to }}</td>
@@ -23,11 +23,12 @@
         </div>
     </template>
     <template v-else>
-        Je hebt vandaag geen afspraken in je agenda.
+        {{$t('youhavenoappointmentstoday')}}.
     </template>
 </template>
 
 <script setup>
+
 import { computed } from "vue";
 import useAuth from "../composables/UseAuth";
 import useCalendar from "../composables/UseCalendar";

@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createI18n } from 'vue-i18n';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import App from './App.vue';
@@ -18,9 +19,17 @@ import useAuth from "./composables/UseAuth";
 const { setUser } = useAuth();
 await setUser();
 
+import messages from './lang/translations';
+const i18n = createI18n({
+    locale: 'nl',
+    fallbackLocale: 'en',
+    messages
+});
+
 createApp(App)
     .use(router)
     .use(VTooltipPlugin)
     .use(VueAxios, axios)
+    .use(i18n)
     .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app');
