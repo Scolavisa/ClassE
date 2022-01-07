@@ -1,11 +1,26 @@
 <template>
-<h1>{{$t('calendarmonthview')}}</h1>
+    <h1>{{$t('calendarmonthview')}}</h1>
+    <div class="cal-container">
+        <vue-cal
+            class="vuecal--rounded-theme vuecal--green-theme"
+            xsmall
+            hide-view-selector
+            :time="false"
+            active-view="month"
+            :disable-views="['week', 'day', 'year', 'years']"
+        />
+    </div>
 </template>
 
 <script setup>
-
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
 </script>
 
 <style scoped>
+.cal-container {
+    position: relative;
+    height: 50vh;
+}
 
 </style>
