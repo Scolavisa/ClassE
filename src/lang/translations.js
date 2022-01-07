@@ -2,6 +2,7 @@ export default {
     en: {
         calendar:                       'Calendar',
         calendarmonthview:              'Month view',
+        dayviewfor:                     'Day view for',
         emailaddress:                   'Email address',
         hello:                          'Hello',
         home:                           'Home',
@@ -16,6 +17,7 @@ export default {
     nl: {
         calendar:                       'Kalender',
         calendarmonthview:              'Maandoverzicht',
+        dayviewfor:                     'Dagoverzicht voor',
         emailaddress:                   'E-mailadres',
         hello:                          'Hallo',
         home:                           'Home',

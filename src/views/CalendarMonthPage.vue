@@ -8,6 +8,8 @@
             :time="false"
             active-view="month"
             :disable-views="['week', 'day', 'year', 'years']"
+            :events="events"
+            @cell-click="openDayview"
         />
     </div>
 </template>
@@ -15,6 +17,19 @@
 <script setup>
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
+import { useRouter } from "vue-router";
+const router = useRouter();
+const events = [
+    {
+        start: '2022-01-21',
+        end: '2022-01-21',
+        title: 'stuff'
+    },
+]
+const openDayview = (ev) => {
+    const targetDay = ev.toISOString().split('T')[0];
+    router.push({name: 'calendarday', params: {targetDay}});
+}
 </script>
 
 <style scoped>

@@ -3,6 +3,7 @@ import useAuth from "@/composables/UseAuth";
 import Home from "@/views/HomePage.vue";
 import Login from "@/views/LoginPage.vue";
 import CalendarMonth from "@/views/CalendarMonthPage.vue";
+import CalendarDay from "@/views/DayViewPage.vue";
 
 const { authenticated } = useAuth();
 
@@ -16,6 +17,11 @@ const routes = [
         path: '/calendarmonth',
         name: 'calendarmonth',
         component: CalendarMonth
+    },
+    {
+        path: '/calendarday',
+        name: 'calendarday',
+        component: CalendarDay
     },
     {
         path: '/login',

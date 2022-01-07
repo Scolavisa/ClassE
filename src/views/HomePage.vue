@@ -1,13 +1,11 @@
 <template>
+    <top-menu :suppress-home-link="true"/>
     <div v-if="domainName!==''" class="mb-2 alert alert-primary">
         {{ domainName }}
     </div>
     <p>
         {{ $t("hello")}} {{ userName }},
         {{ $t("welcome") }}
-    </p>
-    <p>
-    <router-link to="/calendarmonth" class="btn btn-secondary">{{$t('yourmontlyoverview')}}</router-link>
     </p>
     <template v-if="filteredEvents.length > 0">
         <div class="calendar-section">
@@ -32,6 +30,7 @@
 import { computed } from "vue";
 import useAuth from "../composables/UseAuth";
 import useCalendar from "../composables/UseCalendar";
+import TopMenu from "../components/TopMenu.vue";
 const { domainName, userName } = useAuth();
 const { myDay } = useCalendar();
 const filteredEvents = computed(() => {
