@@ -15,10 +15,6 @@ library.add([ faCalendar, faHome, faSignOutAlt ]);
 import VTooltipPlugin from 'v-tooltip';
 import 'v-tooltip/dist/v-tooltip.css';
 
-import useAuth from "./composables/UseAuth";
-const { setUser } = useAuth();
-await setUser();
-
 import messages from './lang/translations';
 const i18n = createI18n({
     locale: 'nl',

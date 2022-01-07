@@ -28,9 +28,9 @@
 <script setup>
 
 import { computed } from "vue";
-import useAuth from "../composables/UseAuth";
-import useCalendar from "../composables/UseCalendar";
-import TopMenu from "../components/TopMenu.vue";
+import useAuth from "@/composables/UseAuth";
+import useCalendar from "@/composables/UseCalendar";
+import TopMenu from "@/components/TopMenu.vue";
 const { domainName, userName } = useAuth();
 const { myDay } = useCalendar();
 const filteredEvents = computed(() => {

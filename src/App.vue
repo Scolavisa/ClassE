@@ -1,12 +1,12 @@
 <template>
-    <HeaderSection />
+    <HeaderSection/>
     <!-- Begin page content -->
     <main class="flex-shrink-0">
         <div class="container">
-            <router-view />
+            <router-view/>
         </div>
     </main>
-    <FooterSection />
+    <FooterSection/>
 </template>
 
 <script setup>

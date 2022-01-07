@@ -5,7 +5,7 @@ import Login from "@/views/LoginPage.vue";
 import CalendarMonth from "@/views/CalendarMonthPage.vue";
 import CalendarDay from "@/views/DayViewPage.vue";
 
-const { authenticated } = useAuth();
+const { authenticated, setUser } = useAuth();
 
 const routes = [
     {
@@ -35,11 +35,11 @@ const router = createRouter({
     routes
 });
 
-
 /**
  * if not logged in: redirect to login page
  */
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+    await setUser();
     if (to.name !== 'login' && !authenticated.value) {
         next({name: 'login'});
     } else {
