@@ -55,12 +55,8 @@ import { useRouter } from "vue-router";
 import useAuth from "@/composables/UseAuth";
 
 const error = ref('');
-// during dev
-const email = ref('michael@scolavisa.eu');
-const password = ref('8Q4K)jKeN#P8IJ');
-// prod
-// const email = ref('');
-// const password = ref('');
+const email = ref('');
+const password = ref('');
 
 const router = useRouter();
 const { authenticated, signIn } = useAuth();
@@ -70,7 +66,7 @@ const handleSubmit = async () => {
     if (authenticated.value) {
         router.replace({name: 'home'});
     } else {
-        error.value = "login not successful";
+        error.value = "login was not successful";
     }
 };
 
