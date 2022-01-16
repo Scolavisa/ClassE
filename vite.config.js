@@ -20,5 +20,9 @@ export default defineConfig({
     plugins: [
         vue(),
         VitePWA({})
-    ]
+    ],
+    test: {
+        global: true,
+        environment: 'happy-dom',
+    }
 });
