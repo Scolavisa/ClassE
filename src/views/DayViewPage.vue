@@ -2,7 +2,10 @@
     <top-menu />
     <template v-if="theDay.length > 0">
         <div class="calendar-section">
-            <h3>{{ $t('dayviewfor') }} {{ viewTargetDate }}</h3>
+            <h3 class="text-center">
+                <font-awesome-icon icon="calendar" />
+                {{ viewTargetDate }}
+            </h3>
             <table class="table table-responsive">
                 <tr v-for="timeSlot in theDay">
                     <td>{{ timeSlot.from }}-{{ timeSlot.to }}</td>
@@ -14,7 +17,9 @@
         </div>
     </template>
     <template v-else>
-        {{$t('youhavenoappointmentson')}} {{ viewTargetDate }}.
+        <h4 class="text-center mt-4">
+            {{$t('youhavenoappointmentson')}} {{ viewTargetDate }}.
+        </h4>
     </template>
 </template>
 
@@ -29,7 +34,9 @@ const route = useRoute();
 const targetDay = route.params.targetDay;
 
 const viewTargetDate = computed(() => {
-    return `${targetDay.substr(8,2)}-${targetDay.substr(5,2)}-${targetDay.substr(0,4)}`
+    const viewDay = new Date(targetDay);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return viewDay.toLocaleDateString('nl-NL', options);
 });
 // get target day data
 onMounted(() => {
@@ -37,7 +44,3 @@ onMounted(() => {
 });
 
 </script>
-
-<style scoped>
-
-</style>
