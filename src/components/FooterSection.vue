@@ -1,8 +1,14 @@
 <template>
     <footer class="footer mt-auto py-3 bg-light fixed-bottom">
         <div class="container">
-            <div class="text-muted text-center">
+            <div
+                v-if="isProdEnvironment"
+                class="text-muted text-center">
                 <small>CLASS by <a class="text-secondary" href="https://www.scolavisa.eu">Scolavisa</a> &copy; {{ dateRange }}</small>
+            </div>
+            <div v-else class="alert text-center text-danger">
+                <font-awesome-icon icon="exclamation-circle"/>
+                THIS IS A TEST ENVIRONMENT
             </div>
         </div>
     </footer>
@@ -21,6 +27,9 @@ const dateRange = computed(() => {
     return ye === "2021"
         ? "2021"
         : `2021 - ${ye}`;
+});
+const isProdEnvironment = computed(() => {
+    return import.meta.env.VITE_APP_ENV === 'prod';
 });
 </script>
 
