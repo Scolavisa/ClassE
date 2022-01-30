@@ -1,8 +1,8 @@
 <template>
-    <top-menu :suppress-home-link="true"/>
     <div v-if="domainName!==''" class="mb-2 alert alert-primary">
         {{ domainName }}
     </div>
+    <top-menu :suppress-home-link="true"/>
     <p>
         {{ $t("hello")}} {{ userName }},
         {{ $t("welcome") }}
@@ -31,7 +31,7 @@ import { computed } from "vue";
 import useAuth from "@/composables/UseAuth";
 import useCalendar from "@/composables/UseCalendar";
 import TopMenu from "@/components/TopMenu.vue";
-const { domainName, userName } = useAuth();
+const { domainName, userName, user } = useAuth();
 const { myDay } = useCalendar();
 const filteredEvents = computed(() => {
     return myDay.value.filter(event => event.classname !== 'past');
@@ -52,5 +52,8 @@ const filteredEvents = computed(() => {
 }
 .future {
     color: gray;
+}
+.alert {
+    padding: 0.1rem 1rem;
 }
 </style>

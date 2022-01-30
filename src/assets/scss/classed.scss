@@ -60,3 +60,6 @@ $theme-colors: (
 @import "../../../node_modules/bootstrap/scss/offcanvas";
 @import "../../../node_modules/bootstrap/scss/placeholders";
 
+.btn-primary, .btn-secondary {
+  color: white !important;
+}
