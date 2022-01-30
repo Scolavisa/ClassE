@@ -1,3 +1,3 @@
-# CLASS-ED
+# CLASS-E
 CLASS Educators Dashboard
 
