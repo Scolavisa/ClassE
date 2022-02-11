@@ -8,7 +8,7 @@
             </div>
             <div v-else class="alert text-center text-danger">
                 <font-awesome-icon icon="exclamation-circle"/>
-                THIS IS A TEST ENVIRONMENT
+                THIS IS A {{ environmentName }} ENVIRONMENT
             </div>
         </div>
     </footer>
@@ -30,6 +30,9 @@ const dateRange = computed(() => {
 });
 const isProdEnvironment = computed(() => {
     return import.meta.env.VITE_APP_ENV === 'prod';
+});
+const environmentName = computed(() => {
+    return import.meta.env.VITE_APP_ENV.toUpperCase();
 });
 </script>
 
