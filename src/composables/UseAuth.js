@@ -8,20 +8,23 @@ export default function useAuth() {
 
     const signIn = async (email, password) => {
         console.log("Getting cookie with axios");
-        await axios.get(import.meta.env.VITE_APP_CSRF_URL, {
-            withCredentials: true
-        });
-
-        console.log("Got response. Signing in with axios");
-        await axios.post(
-            import.meta.env.VITE_APP_LOGIN_URL,
-            { email, password },
-            {
+        try {
+            // get xsrf cookie (or not)
+            await axios.get(import.meta.env.VITE_APP_CSRF_URL, {
                 withCredentials: true
-            }
-        );
-        console.log("testing if user is authenticated");
-        await setUser();
+            });
+            await axios.post(
+                import.meta.env.VITE_APP_LOGIN_URL,
+                { email, password },
+                {
+                    withCredentials: true
+                }
+            );
+            console.log("testing if user is now authenticated");
+            await setUser();
+        } catch (e) {
+            console.log("Login was not succesful");
+        }
     };
 
     const signOut = async () => {
@@ -43,12 +46,14 @@ export default function useAuth() {
      */
     const setUser = async () => {
         try {
+            console.log("user is successfully authenticated");
             const resp = await axios.get(`${import.meta.env.VITE_APP_API_BASE_URL}/user`, {
                 withCredentials: true
             });
             authenticated.value = true;
             user.value = resp.data.data;
         } catch (e) {
+            console.log("user not authenticated");
             authenticated.value = false;
             user.value = null;
         }
