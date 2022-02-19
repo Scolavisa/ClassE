@@ -7,15 +7,22 @@
         {{ $t("hello")}} {{ userName }},
         {{ $t("welcome") }}
     </p>
-    <template v-if="filteredEvents.length > 0">
+    <template v-if="myDayWithFreeTime.length > 0">
         <div class="calendar-section">
             <h3>{{$t('yourcalendarfortoday')}}:</h3>
             <table class="table table-responsive">
-                <tr v-for="timeSlot in filteredEvents" :class="timeSlot.classname">
-                    <td>{{ timeSlot.from }}-{{ timeSlot.to }}</td>
-                    <td>{{ timeSlot.studentname }}</td>
-                    <td>{{ timeSlot.coursename }}</td>
-                    <td>{{ timeSlot.locationname }}</td>
+                <tr v-for="timeSlot in myDayWithFreeTime" :class="timeSlot.classname">
+                    <template v-if="timeSlot.type==='work'">
+                        <td>{{ timeSlot.from }}-{{ timeSlot.to }}</td>
+                        <td>{{ timeSlot.studentname }}</td>
+                        <td>{{ timeSlot.coursename }}</td>
+                        <td>{{ timeSlot.locationname }}</td>
+                    </template>
+                    <template v-if="timeSlot.type==='free'">
+                        <td colspan="4">
+                            {{ $t("free") }}: {{ timeSlot.mins }}
+                        </td>
+                    </template>
                 </tr>
             </table>
         </div>
@@ -26,17 +33,11 @@
 </template>
 
 <script setup>
-
-import { computed } from "vue";
 import useAuth from "@/composables/UseAuth";
 import useCalendar from "@/composables/UseCalendar";
 import TopMenu from "@/components/TopMenu.vue";
 const { domainName, userName, user } = useAuth();
-const { myDay } = useCalendar();
-const filteredEvents = computed(() => {
-    return myDay.value.filter(event => event.classname !== 'past');
-});
-
+const { myDayWithFreeTime } = useCalendar();
 </script>
 
 <style lang="scss">
