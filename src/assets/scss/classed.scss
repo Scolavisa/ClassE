@@ -63,3 +63,15 @@ $theme-colors: (
 .btn-primary, .btn-secondary {
   color: white !important;
 }
+
+.freetime {
+  background-color: $info;
+  color: white;
+  text-align: center;
+}
+
+.overlap {
+  background-color: $warning;
+  color: white;
+  text-align: center;
+}
