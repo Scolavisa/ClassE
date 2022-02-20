@@ -112,13 +112,12 @@ export default function useCalendar() {
                     (day.toDT !== myDay.value[index + 1].fromDT)
                 ) {
                     // calculate timespan between these events
-                    const fromTime = new Date(day.toDT);
-                    const toTime = new Date(myDay.value[index + 1].fromDT);
-                    const diffMs = toTime - fromTime;
+                    const { diffString, type, classname }
+                        = getTimeDiffAsString(new Date(day.toDT), new Date(myDay.value[index + 1].fromDT));
                     myDayWithFreeTime.value.push({
-                        type: 'free',
-                        classname: 'freetime',
-                        mins: Math.floor(((diffMs % 86400000) % 3600000) / 60000) + " min"
+                        type,
+                        classname,
+                        mins: diffString
                     });
                 }
             }
@@ -126,7 +125,6 @@ export default function useCalendar() {
     };
 
     const addFreeTimeSegmentsToTheDay = () => {
-        console.log("adding free time segments");
         theDayWithFreeTime.value = [];
         theDay.value.forEach((day, index) => {
             // this one goes in the list to display
@@ -138,26 +136,46 @@ export default function useCalendar() {
                 (day.toDT !== theDay.value[index + 1].fromDT)
             ) {
                 // calculate timespan between these events
-                const fromTime = new Date(day.toDT);
-                const toTime = new Date(theDay.value[index + 1].fromDT);
-                const diffMs = toTime - fromTime;
-                if (diffMs > 0) {
-                    theDayWithFreeTime.value.push({
-                        type: 'free',
-                        classname: 'freetime',
-                        mins: Math.floor(((diffMs % 86400000) % 3600000) / 60000) + " min"
-                    });
-                } else if (diffMs < 0) {
-                    // seems the next appointment starts before the previous appointment has ended
-                    theDayWithFreeTime.value.push({
-                        type: 'overlap',
-                        classname: 'overlap',
-                        mins: Math.abs(Math.floor(((diffMs % 86400000) % 3600000) / 60000)) + " min"
-                    });
-                }
+                const { diffString, type, classname }
+                    = getTimeDiffAsString(new Date(day.toDT), new Date(theDay.value[index + 1].fromDT));
+                theDayWithFreeTime.value.push({
+                    type,
+                    classname,
+                    mins: diffString
+                });
+
             }
         });
     };
+
+
+    /**
+     * Get the difference between two DateTime values.
+     * If to > from, it will be considered an overlap
+     * @param from DateTime
+     * @param to DateTime
+     * @return {{classname: string, diffString: string, type: string}}
+     */
+    const getTimeDiffAsString = (from, to) => {
+        let fromTime = from;
+        let toTime = to;
+        let type = "free";
+        let classname = "freetime";
+        if (from > to) {
+            fromTime = to;
+            toTime = from;
+            type = "overlap";
+            classname = "overlap";
+        }
+        const diffMs = toTime - fromTime;
+        const diffHrs = ("00" + Math.abs(Math.floor((diffMs % 86400000) / 3600000))).slice (-2); // hours
+        const diffMins = ("00" + Math.abs(Math.floor(((diffMs % 86400000) % 3600000) / 60000))).slice (-2);
+        const diffString = diffHrs !== '00'
+            ? `${diffHrs}:${diffMins}`
+            : `${diffMins} min`;
+
+        return { diffString, type, classname };
+    }
 
     return {
         getEventsOfDay,

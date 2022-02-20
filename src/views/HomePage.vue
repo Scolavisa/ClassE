@@ -4,7 +4,7 @@
     </div>
     <top-menu :suppress-home-link="true"/>
     <p>
-        {{ $t("hello")}} {{ userName }},
+        {{ $t("hello")}} {{ userName }},<br/>
         {{ $t("welcome") }}
     </p>
     <template v-if="myDayWithFreeTime.length > 0">
@@ -19,9 +19,10 @@
                         <td>{{ timeSlot.locationname }}</td>
                     </template>
                     <template v-if="timeSlot.type==='free'">
-                        <td colspan="4">
-                            {{ $t("free") }}: {{ timeSlot.mins }}
-                        </td>
+                        <td colspan="4">{{ $t("not_scheduled") }}: {{ timeSlot.mins }}</td>
+                    </template>
+                    <template v-if="timeSlot.type==='overlap'">
+                        <td colspan="4">{{ $t("overlap") }}: {{ timeSlot.mins }}</td>
                     </template>
                 </tr>
             </table>
