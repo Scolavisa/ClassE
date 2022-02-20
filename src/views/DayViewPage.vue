@@ -15,7 +15,7 @@
                         <td>{{ timeSlot.locationname }}</td>
                     </template>
                     <template v-else-if="timeSlot.type==='free'">
-                        <td colspan="4">{{ $t("free") }}: {{ timeSlot.mins }}</td>
+                        <td colspan="4">{{ $t("not_scheduled") }}: {{ timeSlot.mins }}</td>
                     </template>
                     <template v-else>
                         <td colspan="4">{{ $t("overlap") }} {{ timeSlot.mins }}</td>
