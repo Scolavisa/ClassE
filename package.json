@@ -4,6 +4,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
+    "dev:network": "vite --host 0.0.0.0",
     "build:prod": "vite build --mode prod",
     "build:test": "vite build --mode test",
     "preview": "vite preview",

@@ -113,7 +113,10 @@ export default function useCalendar() {
                 ) {
                     // calculate timespan between these events
                     const { diffString, type, classname }
-                        = getTimeDiffAsString(new Date(day.toDT), new Date(myDay.value[index + 1].fromDT));
+                            = getTimeDiffAsString(
+                                new Date(dtString(day.toDT)),
+                                new Date(dtString(myDay.value[index + 1].fromDT))
+                            );
                     myDayWithFreeTime.value.push({
                         type,
                         classname,
@@ -137,7 +140,10 @@ export default function useCalendar() {
             ) {
                 // calculate timespan between these events
                 const { diffString, type, classname }
-                    = getTimeDiffAsString(new Date(day.toDT), new Date(theDay.value[index + 1].fromDT));
+                    = getTimeDiffAsString(
+                        new Date(dtString(day.toDT)),
+                        new Date(dtString(theDay.value[index + 1].fromDT))
+                    );
                 theDayWithFreeTime.value.push({
                     type,
                     classname,
@@ -175,6 +181,24 @@ export default function useCalendar() {
             : `${diffMins} min`;
 
         return { diffString, type, classname };
+    }
+
+    /**
+     * insert a 'T' before the timesegment
+     * iphone browsers will not except it as a date-time otherwise
+     * resulting in NaN when doing calculations
+     *
+     * @param dateTimeString
+     * @return {string}
+     */
+    const dtString = (dateTimeString) => {
+        let newString = dateTimeString;
+        // only if position 11 is a space like
+        // 2022-02-12 10:15
+        if(dateTimeString.substr(10,1) === " ") {
+            newString = dateTimeString.substr(0, 10) + "T" +dateTimeString.substr(11);
+        }
+        return newString;
     }
 
     return {
