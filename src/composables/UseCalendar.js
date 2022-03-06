@@ -12,7 +12,7 @@ export default function useCalendar() {
 
     onMounted(async () => {
         await getMyDay();
-    })
+    });
 
     /**
      * calendar page: get my events of a requested day
