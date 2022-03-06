@@ -1,6 +1,9 @@
 <template>
     <footer class="footer mt-auto py-3 bg-light fixed-bottom">
-        <div class="container">
+        <div class="container d-flex justify-content-between">
+            <button v-if="route.name !== 'home'" @click="goBack" class="btn btn-primary">
+                <font-awesome-icon icon="chevron-circle-left"></font-awesome-icon>
+            </button>
             <div
                 v-if="isProdEnvironment"
                 class="text-muted text-center">
@@ -16,7 +19,12 @@
 
 <script setup>
 import { computed } from "vue";
-
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
+const goBack = () => {
+    router.back();
+};
 /**
  * date range to show for copyright line
   * @type {ComputedRef<string|string>}

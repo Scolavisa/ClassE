@@ -7,6 +7,12 @@
         {{ $t("hello")}} {{ userName }},<br/>
         {{ $t("welcome") }}
     </p>
+    <p v-if="countUnreadMessages > 0" class="alert alert-primary text-center">
+        <router-link to="messagebox" class="nav-link">
+            {{ $t("youhavenrofunreadmessages", {count: countUnreadMessages})}}
+            <font-awesome-icon icon="arrow-alt-circle-right"></font-awesome-icon>
+        </router-link>
+    </p>
     <template v-if="myDayWithFreeTime.length > 0">
         <div class="calendar-section">
             <h3>{{$t('yourcalendarfortoday')}}:</h3>
@@ -36,9 +42,11 @@
 <script setup>
 import useAuth from "@/composables/UseAuth";
 import useCalendar from "@/composables/UseCalendar";
+import useMessageBox from "@/composables/useMessageBox";
 import TopMenu from "@/components/TopMenu.vue";
-const { domainName, userName, user } = useAuth();
+const { domainName, userName } = useAuth();
 const { myDayWithFreeTime } = useCalendar();
+const { countUnreadMessages } = useMessageBox();
 </script>
 
 <style lang="scss">

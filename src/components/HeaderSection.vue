@@ -45,6 +45,10 @@
                                         <font-awesome-icon icon="calendar"/>
                                         {{ $t('calendar') }}
                                     </router-link>
+                                    <router-link v-if="authenticated" to="messagebox" class="btn btn-primary">
+                                        <font-awesome-icon icon="inbox"/>
+                                        {{ $t('messages') }}
+                                    </router-link>
                                 </div>
                             </div>
                             <div class="offcanvas-body">

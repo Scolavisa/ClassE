@@ -4,6 +4,8 @@ import Home from "@/views/HomePage.vue";
 import Login from "@/views/LoginPage.vue";
 import CalendarMonth from "@/views/CalendarMonthPage.vue";
 import CalendarDay from "@/views/DayViewPage.vue";
+import MessageBox from "@/views/MessageBoxPage.vue";
+import MessageDisplay from "@/views/MessageDisplayPage.vue";
 
 const { authenticated, setUser } = useAuth();
 
@@ -22,6 +24,16 @@ const routes = [
         path: '/calendarday',
         name: 'calendarday',
         component: CalendarDay
+    },
+    {
+        path: '/messagebox',
+        name: 'messagebox',
+        component: MessageBox
+    },
+    {
+        path: '/messagedisplay',
+        name: 'messagedisplay',
+        component: MessageDisplay
     },
     {
         path: '/login',
