@@ -9,9 +9,14 @@
         </thead>
         <tbody>
             <tr
-                v-for="message in unreadMessages"
+                v-for="message in inbox"
                 :key="message.id"
                 @click="openMessage(message.id)"
+                :class="[
+                    {'unread': message.read_at == null || message.read_at === ''},
+                    {'read': message.read_at != null && message.read_at !== ''},
+                    'pointer'
+                ]"
             >
                 <td>{{ message.from_label }}</td>
                 <td>{{ message.subject }}</td>
@@ -24,7 +29,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import useMessageBox from "../composables/useMessageBox";
-const { unreadMessages } = useMessageBox();
+const { inbox } = useMessageBox();
 const router = useRouter();
 const openMessage = (messageId) => {
     router.push({
@@ -34,9 +39,18 @@ const openMessage = (messageId) => {
         }
     })
 };
-
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+@import "../assets/scss/classed";
+.unread {
+    color: $warning;
+    font-size: 1.2rem;
+}
+.read {
+    color: gray;
+}
+.pointer {
+    cursor: pointer;
+}
 </style>
