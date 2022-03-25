@@ -12,16 +12,18 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import useMessageBox from "../composables/useMessageBox";
-const { unreadMessages } = useMessageBox();
+const { messageOpened, inbox } = useMessageBox();
 const route = useRoute();
 const message = computed(() => {
     const mID = parseInt(route.params?.messageId);
-    return unreadMessages.value.find(m => m.id === mID);
+    return inbox.value.find(m => m.id === mID);
 });
 const formattedDate = computed(() => {
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(message.value?.created_at).toLocaleString("nl-NL", options);
 });
+// message has been opened -> update backend
+messageOpened(route.params?.messageId);
 </script>
 
 <style scoped>
