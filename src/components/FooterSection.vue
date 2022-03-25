@@ -1,7 +1,10 @@
 <template>
     <footer class="footer mt-auto py-3 bg-light fixed-bottom">
         <div class="container d-flex justify-content-between">
-            <button v-if="route.name !== 'home'" @click="goBack" class="btn btn-primary">
+            <button v-if="route.name !== 'home' && route.name !== 'login'"
+                    @click="goBack"
+                    class="btn btn-primary"
+            >
                 <font-awesome-icon icon="chevron-circle-left"></font-awesome-icon>
             </button>
             <div

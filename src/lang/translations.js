@@ -20,7 +20,8 @@ export default {
         youhavenoappointmentstoday:     'You have no appointments in your calendar today',
         youhavenrofunreadmessages:      'You have {count} unread message | You have {count} unread messages',
         yourmontlyoverview:             'Your monthly overview',
-        welcome:                        'Welcome to the Class educators dashboard'
+        welcome:                        'Welcome to the Class educators dashboard',
+        wholeday:                       'Whole day'
     },
     nl: {
         calendar:                       'Kalender',
@@ -43,6 +44,7 @@ export default {
         youhavenoappointmentstoday:     'Je hebt vandaag geen afspraken in je agenda',
         youhavenrofunreadmessages:      'Je hebt {count} ongelezen bericht | Je hebt {count} ongelezen berichten',
         yourmontlyoverview:             'Je maandoverzicht',
-        welcome:                        'Welkom bij het Class educators dashboard'
+        welcome:                        'Welkom bij het Class educators dashboard',
+        wholeday:                       'Hele dag'
     }
 };
