@@ -17,12 +17,21 @@
         <div class="calendar-section">
             <h3>{{$t('yourcalendarfortoday')}}:</h3>
             <table class="table table-responsive">
-                <tr v-for="timeSlot in myDayWithFreeTime" :class="timeSlot.classname">
+                <tr
+                    v-for="(timeSlot, index) in myDayWithFreeTime"
+                    :key="index"
+                    :class="timeSlot.eventType==='dateexception' ? 'dateexception' : timeSlot.classname"
+                >
                     <template v-if="timeSlot.type==='work'">
-                        <td>{{ timeSlot.from }}-{{ timeSlot.to }}</td>
-                        <td>{{ timeSlot.studentname }}</td>
-                        <td>{{ timeSlot.coursename }}</td>
-                        <td>{{ timeSlot.locationname }}</td>
+                        <td v-if="timeSlot.isWholeDay">{{ $t('wholeday') }}</td>
+                        <td v-else>{{ timeSlot.from }}-{{ timeSlot.to }}</td>
+
+                        <td class="text-center" colspan="3" v-if="timeSlot.eventType === 'dateexception'">
+                            {{ timeSlot.reason }}
+                        </td>
+                        <td v-if="timeSlot.eventType === 'event'">{{ timeSlot.studentname }}</td>
+                        <td v-if="timeSlot.eventType === 'event'">{{ timeSlot.coursename }}</td>
+                        <td v-if="timeSlot.eventType === 'event'">{{ timeSlot.locationname }}</td>
                     </template>
                     <template v-if="timeSlot.type==='free'">
                         <td colspan="4">{{ $t("not_scheduled") }}: {{ timeSlot.mins }}</td>

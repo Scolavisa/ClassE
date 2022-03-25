@@ -74,10 +74,11 @@ export default function useCalendar() {
      */
     const updateCalendarColors = () => {
         const now = new Date().toLocaleString("nl",  { hour12: false });
-        // get the time section of the 'now' string and turn it into an integer for comparison
+        // get the time section of the 'now' string
+        // and turn it into an integer for comparison
         const currentTime = parseInt(
             now.split(" ")[1]
-                .substr(0,5)
+                .substring(0, 5)
                 .replace(":", "")
         );
         for (let segment of myDay.value) {
@@ -97,7 +98,7 @@ export default function useCalendar() {
      * Add free space between listed appointments
      * this function disregards appointments in the past.
      * Therefor, not to be used for the calendar-1-day display,
-     * but only for the homepage display
+     * but only for the homepage display (see addFreeTimeSegmentsToTheDay)
      */
     const addFreeTimeSegmentsToMyDay = () => {
         myDayWithFreeTime.value = [];
@@ -107,7 +108,9 @@ export default function useCalendar() {
                 day.type = 'work';
                 myDayWithFreeTime.value.push(day);
                 // now see if we need to add a 'free' segment
+                // only if theDay is not a whole day event
                 if (
+                    (!day.isWholeDay) &&
                     (myDay.value[index + 1] != null) &&
                     (day.toDT !== myDay.value[index + 1].fromDT)
                 ) {
@@ -127,6 +130,12 @@ export default function useCalendar() {
         });
     };
 
+    /**
+     * Add free space between listed appointments
+     * this function includes appointments in the past.
+     * Therefor, this should be used for the calendar-1-day display,
+     * but not for the homepage display (see addFreeTimeSegmentsToMyDay)
+     */
     const addFreeTimeSegmentsToTheDay = () => {
         theDayWithFreeTime.value = [];
         theDay.value.forEach((day, index) => {
@@ -134,7 +143,9 @@ export default function useCalendar() {
             day.type = 'work';
             theDayWithFreeTime.value.push(day);
             // now see if we need to add a 'free' segment
+            // only if theDay is not a whole day event
             if (
+                (!day.isWholeDay) &&
                 (theDay.value[index + 1] != null) &&
                 (day.toDT !== theDay.value[index + 1].fromDT)
             ) {
