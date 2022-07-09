@@ -26,9 +26,19 @@ const events = [
         title: 'stuff'
     },
 ]
+/**
+ * forward click on day to day-detail view
+ * @param ev
+ */
 const openDayview = (ev) => {
-    const targetDay = ev.toISOString().split('T')[0];
-    router.push({name: 'calendarday', params: {targetDay}});
+    // Fri Jul 01 2022 00:52:00 GMT+0200
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    let datePart = ev.toLocaleString("nl-Nl", options);
+    // make 'mystyle' date if needed
+    if (datePart.charAt(2) === '-') {
+        datePart = datePart.substring(6) + "-" + datePart.substring(3,5) + "-" + datePart.substring(0,2);
+    }
+    router.push({name: 'calendarday', params: {targetDay: datePart}});
 }
 </script>
 
